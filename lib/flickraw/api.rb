@@ -169,6 +169,22 @@ module FlickRaw
       r
     end
 
+    def url_with_size(r, size)
+      case size.to_sym
+        when :square then url_s(r)
+        when :large_square then url_q(r)
+        when :thumb, :thumbnail then url_t(r)
+        when :small then url_m(r)
+        when :small_320 then url_n(r)
+        when :medium then url(r)
+        when :medium_640 then url_z(r)
+        when :medium_800 then url_c(r)
+        when :large then url_b(r)
+        when :original then url_o(r)
+        else ''
+      end
+    end
+
     def url(r);   PHOTO_SOURCE_URL % [r.farm, r.server, r.id, r.secret, "",   "jpg"]   end
     def url_m(r); PHOTO_SOURCE_URL % [r.farm, r.server, r.id, r.secret, "_m", "jpg"] end
     def url_s(r); PHOTO_SOURCE_URL % [r.farm, r.server, r.id, r.secret, "_s", "jpg"] end
